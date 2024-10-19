@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "12345",
+    "database": "perguntados_db",
+    "host": "db",
+    "dialect": "mysql"
+  }
+  
+}

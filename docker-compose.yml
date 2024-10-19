@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+
+  # Serviço para o banco de dados MySQL
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: perguntados_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+    # Serviço para o backend
+  backend:
+    build: .
+    ports:
+      - "8800:8800"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=12345
+      - DB_NAME=perguntados_db
+    depends_on:
+      - db
+    volumes:
+      - ../node-app/:/app/src
+
+volumes:
+  db-data:
