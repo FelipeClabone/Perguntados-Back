@@ -71,7 +71,8 @@ export const getUsers = (_, res) => {
         return res.status(400).json({ error: 'Dificuldade deve estar entre 0 e 3' });
     }
 
-    const q = "SELECT * FROM perguntas WHERE categoria = ? AND dificuldade = ? LIMIT 1";
+    const q = "SELECT * FROM perguntas WHERE categoria = ? AND dificuldade = ? ORDER BY RAND() LIMIT 1";
+
 
     db.query(q, [categoriaId, dificuldade], (err, data) => {
         if (err) return res.json(err);

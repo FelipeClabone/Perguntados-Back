@@ -5,7 +5,12 @@ import userRoutes from "./routes/user.js"
 const app = express()
 
 app.use(express.json())
-app.use(cors())
+const corsOptions = {
+    origin: '*',  // Permite todas as origens
+    optionsSuccessStatus: 200 // Para garantir suporte em alguns navegadores mais antigos
+  };
+  
+app.use(cors(corsOptions));
 
 app.use("/", userRoutes)
 

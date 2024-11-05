@@ -13,6 +13,8 @@ services:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
+    networks:
+      - mynetwork
 
     # Serviço para o backend
   backend:
@@ -28,6 +30,11 @@ services:
       - db
     volumes:
       - ../node-app/:/app/src
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
 
 volumes:
   db-data:
